@@ -1,8 +1,9 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from rest_framework import status
 from .serializers import SongSerializer
 from .models import Song
-from music_library import serializers
+
 
 @api_view(['GET', 'POST'])
 def songs_list(request):   
@@ -14,8 +15,6 @@ def songs_list(request):
     
     elif request.method == 'POST':
         serializer = SongSerializer(data=request.data)
-        if serializer.is_valid() == True:
-            serializer.save()
-            return Response(serializer.data, status=201)
-        else:
-            return Response(serializer.errors, status=400)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
