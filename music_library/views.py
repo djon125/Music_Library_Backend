@@ -21,9 +21,15 @@ def songs_list(request):
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
-@api_view(['GET'])
+@api_view(['GET', 'PUT'])
 def song_detail(request, pk):
     song = get_object_or_404(Song, pk=pk)
-    serializer =SongSerializer(song)
-    return Response(serializer.data)  
+    if request.method == 'GET':
+        serializer =SongSerializer(song)
+        return Response(serializer.data)  
+    elif request.method == 'PUT':
+        serializer = SongSerializer(song, data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data)
 
