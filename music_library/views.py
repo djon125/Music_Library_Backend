@@ -8,11 +8,18 @@ from .models import Song
 
 
 @api_view(['GET', 'POST'])
-def songs_list(request):   
+def songs_list(request):  
+    
     if request.method == 'GET':
+        genre_name= request.query_params.get('genre') 
+        print(genre_name)
         songs = Song.objects.all()
+        if genre_name:
+            songs= songs.filter(genre__exact=genre_name)
         serializer = SongSerializer(songs, many=True)
         return Response(serializer.data)
+
+        
     
     
     elif request.method == 'POST':
