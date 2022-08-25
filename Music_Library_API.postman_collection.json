@@ -67,7 +67,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://127.0.0.1:8000/music/2/",
+					"raw": "http://127.0.0.1:8000/music/200/",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -78,7 +78,7 @@
 					"port": "8000",
 					"path": [
 						"music",
-						"2",
+						"200",
 						""
 					]
 				}
@@ -137,6 +137,34 @@
 						"music",
 						"4",
 						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get_All_Songs_or_Search",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/music?",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"music"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null
+						}
 					]
 				}
 			},
